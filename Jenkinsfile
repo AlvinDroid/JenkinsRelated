@@ -1,11 +1,29 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-    agent {label 'master'}
-      steps {
-        bat 'echo "Build"'
-      }
+     agent none
+    stages {
+        stage('Build') {
+            agent {label 'master'}
+            
+            timeout(time: 3, unit: 'MINUTES') {
+            
+            
+              retry(3){
+            	steps {
+                	bat 'xcopy "\\\\10.59.60.216\\Build_Storage\\builds_cn\\SBO\\B1ANY\\B1OD_1.1_DEV\\2019-03-13_09-49-55_1613302\\B1OD" "C:\\git\\CloudJenkins\\Build" /s  /e  /y /i'
+   
+            }          
+            }
+                                               
+                                           }
+            
+        }
+        stage('Test') {
+            agent {label 'master'}
+            steps {
+				bat 'echo test'
+              
+            }
+        }
     }
-  }
+
 }
