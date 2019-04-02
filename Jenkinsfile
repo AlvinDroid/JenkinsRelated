@@ -1,7 +1,7 @@
 pipeline {
   agent none
   stages {
-    stage('BuildCopy') {
+    stage('Precondition') {
       parallel {
         stage('BuildCopy') {
           agent {
@@ -38,6 +38,7 @@ pipeline {
       }
       steps {
         bat 'echo test'
+		 bat 'echo %WORKSPACE%'
       }
     }
   }
