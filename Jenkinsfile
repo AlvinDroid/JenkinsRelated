@@ -24,7 +24,7 @@ pipeline {
             }
 			}
           steps {
-            git(url: 'https://github.wdf.sap.corp/AlvinWang/CloudJenkins.git', branch: 'master', credentialsId: '99c942e8-6b5f-4409-b7b8-d495ee904286')
+			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '99c942e8-6b5f-4409-b7b8-d495ee904286', url: 'https://github.wdf.sap.corp/AlvinWang/CloudJenkins.git']]])
           }
         }
       }
