@@ -17,14 +17,15 @@ pipeline {
 
           }
         }
-        stage('SyncGit'){ 
-		  agent {
+        stage('SyncGit') {
+          agent {
             node {
               label 'master'
             }
-			}
+
+          }
           steps {
-			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '99c942e8-6b5f-4409-b7b8-d495ee904286', url: 'https://github.wdf.sap.corp/AlvinWang/CloudJenkins.git']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '99c942e8-6b5f-4409-b7b8-d495ee904286', url: 'https://github.wdf.sap.corp/AlvinWang/CloudJenkins.git']]])
           }
         }
       }
@@ -38,8 +39,11 @@ pipeline {
       }
       steps {
         bat 'echo test'
-		 bat 'echo %WORKSPACE%'
+        bat 'echo %WORKSPACE%'
       }
     }
+  }
+  environment {
+    BUILD_TYPE = 'COR,DEV,REL'
   }
 }
