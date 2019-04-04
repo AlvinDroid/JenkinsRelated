@@ -18,7 +18,9 @@ pipeline {
 			checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '99c942e8-6b5f-4409-b7b8-d495ee904286', url: 'https://github.wdf.sap.corp/AlvinWang/CloudJenkins.git']]])
           }
     }
-    stage('Precondition') {
+	
+	
+
         stage('BuildCopy') {
           agent {
             node {
@@ -34,7 +36,7 @@ pipeline {
           }
         }
       
-    }
+    
     stage('Test') {
       agent {
         node {
