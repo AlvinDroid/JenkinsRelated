@@ -5,7 +5,7 @@ pipeline {
 	choice(name: 'BUILD_TYPE', choices: ['COR', 'DEV', 'REL'], description: '')
 	choice(name: 'SLDSERVER', choices: ['10.58.8.34'], description: '')   
 	choice(name: 'AGENTSERVER', choices: ['10.58.8.34'], description: '')   
-	def GITLOCALWORKSPACE=${WORKSPACE}@2
+	def GITLOCALWORKSPACE=${WORKSPACE}+@2
   }
   stages {
     stage('SyncGit'){ 
